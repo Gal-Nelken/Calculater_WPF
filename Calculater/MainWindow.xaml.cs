@@ -21,6 +21,7 @@ namespace Calculater
     public partial class MainWindow : Window
     {
         double lastNum, result;
+        bool isEqual = false;
         SelectedOperator selectedOperator;
         public MainWindow()
         {
@@ -71,7 +72,7 @@ namespace Calculater
             }
         }
 
-
+        // EQUEL FUNCTION
         private void EquelBtn_Click(object sender, RoutedEventArgs e)
         {
             double newNum;
@@ -95,7 +96,8 @@ namespace Calculater
 
                 }
             }
-            ResultLabel.Content = result.ToString();    
+            ResultLabel.Content = result.ToString();
+            isEqual = true;
         }
 
         // ADD DOT FUNCTION
@@ -108,6 +110,7 @@ namespace Calculater
         private void OperationBtn_Click(object sender, RoutedEventArgs e)
         {
             if (IsConversionStringToDouble()) ResultLabel.Content = "0";
+            isEqual = false;
 
             if (sender == MultiplyBtn) selectedOperator = SelectedOperator.Multiplication;
             if (sender == DivisionBtn) selectedOperator = SelectedOperator.Division;
@@ -120,9 +123,15 @@ namespace Calculater
         // NUMBERS FUNCTION
         private void NumberBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (isEqual)
+            {
+                ResultLabel.Content = "0";
+                result = 0;
+                lastNum = 0;
+                isEqual = false;
+            }
+                
             int selectedValue = int.Parse((sender as Button).Content.ToString());
-
-
 
             if (ResultLabel.Content.ToString() == "0") ResultLabel.Content = $"{selectedValue}";
             else ResultLabel.Content = $"{ResultLabel.Content}{selectedValue}";

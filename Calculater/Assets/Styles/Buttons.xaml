@@ -40,6 +40,7 @@
     <Style TargetType="Button" x:Key="operationBtn" BasedOn="{StaticResource {x:Type Button}}">
         <Setter Property="Background" Value="#ff9501" />
         <Setter Property="Foreground" Value="#fffeff" />
+        <Setter Property="FontSize" Value="20" />
     </Style>    
     
     <Style TargetType="Button" x:Key="generalBtn" BasedOn="{StaticResource {x:Type Button}}">

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Calculater" Height="550" Width="350" >
     <Grid Margin="5"
-          Background="SlateGray">
+          Background="#000000">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -31,18 +31,19 @@
             Grid.ColumnSpan="4"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
+            Foreground="#ffffff"
             FontSize="60"/>
 
         <!-- ACTIONS -->
         <Button x:Name="ACBtn"         Content="AC"  Grid.Row="1" Grid.Column="0" Style="{StaticResource generalBtn}" />
         <Button x:Name="NegativeBtn"   Content="+/-" Grid.Row="1" Grid.Column="1" Style="{StaticResource generalBtn}"/>
         <Button x:Name="PercentageBtn" Content="%"   Grid.Row="1" Grid.Column="2" Style="{StaticResource generalBtn}"/>
-        <Button x:Name="DivisionBtn"   Content="/"   Grid.Row="1" Grid.Column="3" Style="{StaticResource operationBtn}"/>
-        <Button x:Name="MultiplyBtn"   Content="*"   Grid.Row="2" Grid.Column="3" Style="{StaticResource operationBtn}"/>
-        <Button x:Name="MinusBtn"      Content="-"   Grid.Row="3" Grid.Column="3" Style="{StaticResource operationBtn}"/>
-        <Button x:Name="PlusBtn"       Content="+"   Grid.Row="4" Grid.Column="3" Style="{StaticResource operationBtn}"/>
-        <Button x:Name="EquelBtn"      Content="="   Grid.Row="5" Grid.Column="3" Style="{StaticResource operationBtn}"/>
-        <Button x:Name="DotBtn"        Content="."   Grid.Row="5" Grid.Column="2" Style="{StaticResource numberBtn}" VerticalContentAlignment="Bottom"/>
+        <Button x:Name="DivisionBtn"   Content="➗"   Grid.Row="1" Grid.Column="3" Style="{StaticResource operationBtn}"/>
+        <Button x:Name="MultiplyBtn"   Content="✖"   Grid.Row="2" Grid.Column="3" Style="{StaticResource operationBtn}"/>
+        <Button x:Name="MinusBtn"      Content="➖"   Grid.Row="3" Grid.Column="3" Style="{StaticResource operationBtn}"/>
+        <Button x:Name="PlusBtn"       Content="➕"   Grid.Row="4" Grid.Column="3" Style="{StaticResource operationBtn}"/>
+        <Button x:Name="EquelBtn"      Content="="   Grid.Row="5" Grid.Column="3" Style="{StaticResource operationBtn}" FontSize="40"/>
+        <Button x:Name="DotBtn"        Content="."   Grid.Row="5" Grid.Column="2" Style="{StaticResource numberBtn}" VerticalContentAlignment="Bottom" FontSize="40"/>
 
         <!-- NUMBERS -->
         <Button x:Name="ZeroBtn"  Content="0" Grid.Row="5" Grid.ColumnSpan="2" Click="NumberBtn_Click" Style="{StaticResource numberBtn}"/>

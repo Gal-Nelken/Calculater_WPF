@@ -21,8 +21,10 @@ namespace Calculater
     public partial class MainWindow : Window
     {
         double lastNum, result;
-        bool isEqual = false;
+        bool isCalcDone = false;
         SelectedOperator selectedOperator;
+
+        // --- CONSTRUCTOR --- \\
         public MainWindow()
         {
             InitializeComponent();
@@ -39,22 +41,19 @@ namespace Calculater
             PlusBtn.Click += OperationBtn_Click;
         }
 
-        private bool IsConversionStringToDouble()
-        {
-            return double.TryParse(ResultLabel.Content.ToString(), out lastNum);
-        }
-
         // --- ACTIONS FUNCIONS --- \\
         //CLEAR FUNCTION
         private void ACBtn_Click(object sender, RoutedEventArgs e)
         {
             ResultLabel.Content = "0";
+            result = 0;
+            lastNum = 0;
         }
 
         //NEGATIVE FUNCTION
         private void NegativeBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (IsConversionStringToDouble())
+            if (double.TryParse(ResultLabel.Content.ToString(), out lastNum))
             {
                 if (ResultLabel.Content.ToString() == "0") return;
                 lastNum *= -1;
@@ -65,10 +64,12 @@ namespace Calculater
         // PERCENTAGE FUNCTION
         private void PercentageBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (IsConversionStringToDouble())
+            double tempNum;
+            if (double.TryParse(ResultLabel.Content.ToString(), out tempNum))
             {
-                lastNum /= 100;
-                ResultLabel.Content = lastNum.ToString();
+                tempNum /= 100;
+                if (lastNum != 0) tempNum *= lastNum;
+                ResultLabel.Content = tempNum.ToString();
             }
         }
 
@@ -97,7 +98,7 @@ namespace Calculater
                 }
             }
             ResultLabel.Content = result.ToString();
-            isEqual = true;
+            isCalcDone = true;
         }
 
         // ADD DOT FUNCTION
@@ -109,8 +110,8 @@ namespace Calculater
         // OPERATION FUNCTION 
         private void OperationBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (IsConversionStringToDouble()) ResultLabel.Content = "0";
-            isEqual = false;
+            if (double.TryParse(ResultLabel.Content.ToString(), out lastNum)) ResultLabel.Content = "0";
+            isCalcDone = false;
 
             if (sender == MultiplyBtn) selectedOperator = SelectedOperator.Multiplication;
             if (sender == DivisionBtn) selectedOperator = SelectedOperator.Division;
@@ -123,12 +124,11 @@ namespace Calculater
         // NUMBERS FUNCTION
         private void NumberBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (isEqual)
+            if (isCalcDone)
             {
                 ResultLabel.Content = "0";
-                result = 0;
-                lastNum = 0;
-                isEqual = false;
+
+                isCalcDone = false;
             }
                 
             int selectedValue = int.Parse((sender as Button).Content.ToString());
@@ -165,6 +165,11 @@ namespace Calculater
         }
           public static double Divide (double num1, double num2)
         {
+            if (num2 == 0)
+            {
+                MessageBox.Show("Cannot divide by zero", "Wrong operation", MessageBoxButton.OK, MessageBoxImage.Error);
+                return 0;
+            }
             return num1 / num2;
         }
     }

@@ -9,8 +9,9 @@
 
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Assets/Styles/Buttons.xaml"/>
-
             </ResourceDictionary.MergedDictionaries>
+
         </ResourceDictionary>
+        
     </Application.Resources>
 </Application>

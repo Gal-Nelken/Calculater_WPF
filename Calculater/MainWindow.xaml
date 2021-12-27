@@ -23,6 +23,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
+        
         <!-- RESULT LABEL -->
         
         <Label
